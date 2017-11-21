@@ -16,7 +16,7 @@ This python script `redis_backup.py` will create local Redis RDB-snapshot backup
 ## Running the script
 The script can be run with no arguments:
 
-	$ python reids_backup.py
+	$ python redis_backup.py
 	backup begin @ 2015-03-28 18:30:43.828446
 	backup dir:    	/opt/work/RedisBackup/backups
 	backup file:   	redis_dump_%Y-%m-%d_%H%M%S
