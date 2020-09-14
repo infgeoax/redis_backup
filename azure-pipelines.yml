@@ -1,5 +1,6 @@
 pool:
   name: Azure Pipelines
+  vmImage: windows-latest
 #Your build pipeline references an undefined variable named 'ADOToken'. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 steps:
 - powershell: |
