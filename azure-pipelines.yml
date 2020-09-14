@@ -1,36 +1,8 @@
-# Python package
-# Create and test a Python package on multiple Python versions.
-# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/python
-
-trigger:
-- master
-
 pool:
-  vmImage: 'ubuntu-latest'
-strategy:
-  matrix:
-    Python27:
-      python.version: '2.7'
-    Python35:
-      python.version: '3.5'
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
-
+  name: Azure Pipelines
+#Your build pipeline references an undefined variable named 'ADOToken'. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
-
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
-
-- script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+- powershell: |
+   git remote add secondary https://$(ADOToken)@dev.azure.com/infgeoax0242/Topcoder%20X%20Test%20Project/_git/Topcoder%20X%20Test%20Project
+   git push secondary head:refs/heads/$(Build.SourceBranchName) --force --q
+  displayName: 'Push To ADO'
